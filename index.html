@@ -8,6 +8,38 @@
     <title>Document</title>
   </head>
   <body>
+    <header>
+      <h1 class="logo">Library</h1>
+      <div class="add">
+        <img src="./resources/add.svg" alt="add">
+        <h2>new book</h2>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="book">
+        <div class="info">
+          <div class="image"></div>
+          <h3 class="nbrPages">456 pages</h2>
+          <h2>The Hobbit</h2>
+          <h3>abdelouahab</h3>
+        </div>
+        <h2 class="status">read</h2>
+      </div>
+    </div>
+
+    <div class="formContainer">
+      <form action="#">
+        <input name= "title" type="text" placeholder="TITLE">
+        <input name= "author" type="text" placeholder="AUTHOR">
+        <input name= "pages" type="number" placeholder="000" id="nbrPages">
+        <div class="read">
+          <input type="checkbox" name="isRead" id="isRead">
+          <label for="isRead">READ</label>
+        </div>
+        <button type="submit">ADD BOOK</button>
+      </form>
+    </div>
     <script src="./js/script.js"></script>
   </body>
 </html>
