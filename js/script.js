@@ -51,16 +51,34 @@ submitBtn.addEventListener("click", () => {
       inputPages.value,
       inputIsRead.checked
     );
-    let newBookString = ` <div class="book">
-        <div class="info">
-          <div class="image"></div>
-          <h3 class="nbrPages">${inputPages.value} pages</h2>
-          <h2>${inputTitle.value}</h2>
-          <h3>${inputAuthor.value}</h3>
-        </div>
-        <h2 class="status">read</h2>
-      </div>`;
-    content.innerHTML += newBookString; // I know, I know
+    const bookInterface = document.createElement("div");
+    bookInterface.classList.add("book");
+
+    const bookInfoInterface = document.createElement("div");
+    bookInfoInterface.classList.add("info");
+    const bookImageInterface = document.createElement("div");
+    bookImageInterface.classList.add("image");
+    const nbrPagesInterface = document.createElement("h3");
+    nbrPagesInterface.classList.add("nbrPages");
+    nbrPagesInterface.textContent = inputPages.value;
+    const bookTitleInterface = document.createElement("h2");
+    bookTitleInterface.textContent = inputTitle.value;
+    const bookAuthorInterface = document.createElement("h3");
+    bookAuthorInterface.textContent = inputAuthor.value;
+
+    bookInfoInterface.appendChild(bookImageInterface);
+    bookInfoInterface.appendChild(nbrPagesInterface);
+    bookInfoInterface.appendChild(bookTitleInterface);
+    bookInfoInterface.appendChild(bookAuthorInterface);
+
+    const bookReadStatus = document.createElement("h2");
+    bookReadStatus.classList.add("status");
+    bookReadStatus.textContent = "Read";
+
+    bookInterface.appendChild(bookInfoInterface);
+    bookInterface.appendChild(bookReadStatus);
+
+    content.appendChild(bookInfoInterface);
     library.push(book);
     exitForm();
   }
