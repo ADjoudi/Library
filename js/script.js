@@ -1,10 +1,23 @@
 let library = [];
+
 class Book {
   constructor(title, author, pages, isRead) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.isRead = isRead;
+  }
+  getTitle() {
+    return this.title;
+  }
+  getAuthor() {
+    return this.author;
+  }
+  getNbrPages() {
+    return this.pages;
+  }
+  getStatus() {
+    return this.isRead;
   }
 }
 
@@ -29,6 +42,37 @@ const exitForm = () => {
   form.reset();
 };
 
+const createBookInterface = (book) => {
+  const bookInterface = document.createElement("div");
+  const bookInfoInterface = document.createElement("div");
+  const bookImageInterface = document.createElement("div");
+  const nbrPagesInterface = document.createElement("h3");
+  const bookTitleInterface = document.createElement("h2");
+  const bookAuthorInterface = document.createElement("h3");
+  const bookReadStatus = document.createElement("h2");
+
+  bookInterface.classList.add("book");
+  bookInfoInterface.classList.add("info");
+  bookImageInterface.classList.add("image");
+  nbrPagesInterface.classList.add("nbrPages");
+  bookReadStatus.classList.add("status");
+
+  nbrPagesInterface.textContent = `${book.getNbrPages()} pages`;
+  bookTitleInterface.textContent = book.getTitle();
+  bookAuthorInterface.textContent = book.getAuthor();
+  bookReadStatus.textContent = "Read";
+
+  bookInfoInterface.appendChild(bookImageInterface);
+  bookInfoInterface.appendChild(nbrPagesInterface);
+  bookInfoInterface.appendChild(bookTitleInterface);
+  bookInfoInterface.appendChild(bookAuthorInterface);
+
+  bookInterface.appendChild(bookInfoInterface);
+  bookInterface.appendChild(bookReadStatus);
+
+  return bookInterface;
+};
+
 addBtn.addEventListener("click", () => {
   createForm();
 });
@@ -51,34 +95,9 @@ submitBtn.addEventListener("click", () => {
       inputPages.value,
       inputIsRead.checked
     );
-    const bookInterface = document.createElement("div");
-    bookInterface.classList.add("book");
 
-    const bookInfoInterface = document.createElement("div");
-    bookInfoInterface.classList.add("info");
-    const bookImageInterface = document.createElement("div");
-    bookImageInterface.classList.add("image");
-    const nbrPagesInterface = document.createElement("h3");
-    nbrPagesInterface.classList.add("nbrPages");
-    nbrPagesInterface.textContent = inputPages.value;
-    const bookTitleInterface = document.createElement("h2");
-    bookTitleInterface.textContent = inputTitle.value;
-    const bookAuthorInterface = document.createElement("h3");
-    bookAuthorInterface.textContent = inputAuthor.value;
-
-    bookInfoInterface.appendChild(bookImageInterface);
-    bookInfoInterface.appendChild(nbrPagesInterface);
-    bookInfoInterface.appendChild(bookTitleInterface);
-    bookInfoInterface.appendChild(bookAuthorInterface);
-
-    const bookReadStatus = document.createElement("h2");
-    bookReadStatus.classList.add("status");
-    bookReadStatus.textContent = "Read";
-
-    bookInterface.appendChild(bookInfoInterface);
-    bookInterface.appendChild(bookReadStatus);
-
-    content.appendChild(bookInfoInterface);
+    const bookInterface = createBookInterface(book);
+    content.appendChild(bookInterface);
     library.push(book);
     exitForm();
   }
